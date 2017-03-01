@@ -3,20 +3,24 @@ package dias_plbtw.com.asikinaja.Fragments;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import dias_plbtw.com.asikinaja.APIs.APIList;
 import dias_plbtw.com.asikinaja.APIs.RestClient;
 import dias_plbtw.com.asikinaja.DataAdapter;
@@ -39,6 +43,7 @@ public class ResultFragment extends Fragment{
     private String URL = "";
 
     private TextView title;
+    private ImageView img;
     private ListView lvData;
     private DataAdapter dataAdapter;
     private List<Data> dataItems = new ArrayList<Data>();
@@ -53,6 +58,7 @@ public class ResultFragment extends Fragment{
         }
 
         title = (TextView) view.findViewById(R.id.txtTitle);
+        img = (ImageView) view.findViewById(R.id.imgView);
         lvData = (ListView) view.findViewById(R.id.listViewData);
         dataAdapter = new DataAdapter(view.getContext(), R.layout.item_data, dataItems);
         lvData.setAdapter(dataAdapter);
@@ -67,12 +73,12 @@ public class ResultFragment extends Fragment{
 
     public void fetchData()
     {
-        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Converting...");
-        progressDialog.show();
-
-        Log.d("NewFragment", "URL = " + URL.toString());
+        final SweetAlertDialog mProgressDialog;
+        mProgressDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+        mProgressDialog.getProgressHelper().setBarColor(Color.parseColor("#e2162a"));
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.setTitleText("Converting...");
+        mProgressDialog.show();
 
         service = RestClient.getClient();
         call = service.getConvert(URL, APIKEY);
@@ -89,6 +95,8 @@ public class ResultFragment extends Fragment{
                         title.setText(result.getTitle());
                         title.setVisibility(View.VISIBLE);
 
+                        Glide.with(getView().getContext()).load(result.getImg()).into(img);
+
                         dataItems.clear();
                         List<Data> dataResponseItems = result.getData();
 
@@ -97,21 +105,21 @@ public class ResultFragment extends Fragment{
                             dataAdapter.notifyDataSetChanged();
                         }
 
-                        progressDialog.dismiss();
+                        mProgressDialog.dismiss();
                     }
 
                 } else {
                     // response received but request not successful (like 400,401,403 etc)
                     //Handle errors
                     Toast.makeText(view.getContext(), "Koneksi Ke Internet Gagal", Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
+                    mProgressDialog.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
                 Toast.makeText(view.getContext(), "Koneksi Ke Internet Gagal", Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
+                mProgressDialog.dismiss();
             }
         });
     }

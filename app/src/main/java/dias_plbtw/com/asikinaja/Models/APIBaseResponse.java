@@ -10,6 +10,7 @@ public class APIBaseResponse implements Serializable {
     private String status;
     private String id;
     private String title;
+    private String img;
     private String url;
     private List<Data> data;
 
@@ -51,5 +52,13 @@ public class APIBaseResponse implements Serializable {
 
     public void setData(List<Data> data) {
         this.data = data;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

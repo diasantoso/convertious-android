@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:weightSum="1">
 
     <TextView
         android:layout_width="wrap_content"
@@ -16,6 +17,13 @@
         android:layout_marginTop="20dp"
         android:textColor="#fff"
         android:visibility="invisible" />
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="140dp"
+        android:id="@+id/imgView"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp" />
 
     <ListView
         android:layout_width="match_parent"

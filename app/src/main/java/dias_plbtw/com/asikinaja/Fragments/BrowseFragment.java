@@ -85,17 +85,20 @@ public class BrowseFragment extends Fragment implements View.OnClickListener {
         } else if (v == convbtn) {
             if(urltxt.getText().toString().equalsIgnoreCase("")) {
                 SweetAlertDialog dialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.ERROR_TYPE);
-                dialog.setTitleText("Please choose URL first!");
+                dialog.setTitleText("Alert");
+                dialog.setContentText("Please choose URL first");
                 dialog.show();
             } else if (!urltxt.getText().toString().startsWith("https://m.youtube.com/watch?v=")) {
                 SweetAlertDialog dialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.ERROR_TYPE);
-                dialog.setTitleText("Only youtube video which can convert!");
+                dialog.setTitleText("Alert");
+                dialog.setContentText("Only youtube video which can convert");
                 dialog.show();
             } else {
                 SweetAlertDialog dialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.NORMAL_TYPE);
-                dialog.setTitleText("Are you sure to convert this?");
-                dialog.setCancelText("No, Go Back!");
-                dialog.setConfirmText("Yes, Ofcourse");
+                dialog.setTitleText("Confirmation");
+                dialog.setContentText("Are you sure to convert this video?");
+                dialog.setCancelText("No, Go Back");
+                dialog.setConfirmText("Yes, Of course");
                 dialog.showCancelButton(true);
                 dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
@@ -138,15 +141,14 @@ public class BrowseFragment extends Fragment implements View.OnClickListener {
             // TODO show you progress image
             mProgressDialog.show();
             super.onPageStarted(view, url, favicon);
-
         }
 
         @Override
         public void onPageFinished(WebView view, String url) {
             // TODO hide your progress image
             mProgressDialog.dismiss();
+            urltxt.setText(view.getOriginalUrl());
             super.onPageFinished(view, url);
-            urltxt.setText(webview.getOriginalUrl());
         }
     }
 }

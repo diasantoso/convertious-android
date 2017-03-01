@@ -1,13 +1,20 @@
 package dias_plbtw.com.asikinaja;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -16,17 +23,20 @@ import dias_plbtw.com.asikinaja.Models.Data;
 /**
  * Created by Dias on 2/28/2017.
  */
-public class DataAdapter extends ArrayAdapter<Data> implements View.OnClickListener {
+public class DataAdapter extends ArrayAdapter<Data> {
     Context context;
     int resLayout;
     List<Data> listData;
 
-    TextView tvFormat;
-    TextView tvQuality;
-    TextView tvSize;
-    TextView tvLink;
-    Button btnDownload;
     Data navListData;
+
+    static class ViewHolderItem {
+        TextView tvFormat;
+        TextView tvQuality;
+        TextView tvSize;
+        TextView tvLink;
+        Button btnDownload;
+    }
 
     public DataAdapter(Context context, int resLayout, List<Data> listData) {
         super(context, resLayout, listData);
@@ -36,36 +46,44 @@ public class DataAdapter extends ArrayAdapter<Data> implements View.OnClickListe
     }
 
     @Override
-    public View getView(int position, final View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
 
-        View v = View.inflate(context, resLayout, null);
+        final ViewHolderItem viewHolder;
 
-        tvFormat = (TextView) v.findViewById(R.id.txtFormat);
-        tvQuality = (TextView) v.findViewById(R.id.txtQuality);
-        tvSize = (TextView) v.findViewById(R.id.txtSize);
-        tvLink = (TextView) v.findViewById(R.id.txtLink);
-        btnDownload = (Button) v.findViewById(R.id.btnDownload);
+        if(convertView==null) {
+            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+            convertView = inflater.inflate(resLayout, null, false);
 
-        btnDownload.setOnClickListener(this);
+            viewHolder = new ViewHolderItem();
+            viewHolder.tvFormat = (TextView) convertView.findViewById(R.id.txtFormat);
+            viewHolder.tvQuality = (TextView) convertView.findViewById(R.id.txtQuality);
+            viewHolder.tvSize = (TextView) convertView.findViewById(R.id.txtSize);
+            viewHolder.tvLink = (TextView) convertView.findViewById(R.id.txtLink);
+            viewHolder.btnDownload = (Button) convertView.findViewById(R.id.btnDownload);
+
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolderItem) convertView.getTag();
+        }
 
         navListData = listData.get(position);
 
-        tvFormat.setText("Format : "+navListData.getFormat());
-        tvQuality.setText("Quality : "+navListData.getQuality());
-        tvSize.setText("Size : "+navListData.getSize());
-        tvLink.setText("Link : "+navListData.getLink());
+        viewHolder.tvFormat.setText("Format : "+navListData.getFormat());
+        viewHolder.tvQuality.setText("Quality : "+navListData.getQuality());
+        viewHolder.tvSize.setText("Size : "+navListData.getSize());
+        viewHolder.tvLink.setText("Link : "+navListData.getLink());
 
-        return v;
-    }
+        viewHolder.btnDownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-    @Override
-    public void onClick(View v) {
-        if(v == btnDownload) {
-            Intent i = new Intent();
-            i.setAction(Intent.ACTION_VIEW);
-            i.addCategory(Intent.CATEGORY_BROWSABLE);
-            i.setData(Uri.parse(tvLink.getText().toString()));
-            v.getContext().startActivity(i);
-        }
+                String url = navListData.getLink();
+
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                context.startActivity(browserIntent);
+            }
+        });
+
+        return convertView;
     }
 }
