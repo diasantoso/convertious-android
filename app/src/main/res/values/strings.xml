@@ -10,4 +10,7 @@
     <string name="facebook_app_id">254592188285445</string>
 
     <string name="gagal">GAGAL</string>
+    <string name="title_activity_share">ShareActivity</string>
+
+    <string name="Back">Back</string>
 </resources>

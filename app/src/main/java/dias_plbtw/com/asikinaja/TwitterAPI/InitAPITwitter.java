@@ -11,6 +11,7 @@ import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 
 import dias_plbtw.com.asikinaja.R;
+import dias_plbtw.com.asikinaja.ShareActivity;
 import dias_plbtw.com.asikinaja.ShareTwitterActivity;
 import io.fabric.sdk.android.Fabric;
 
@@ -31,7 +32,7 @@ public class InitAPITwitter extends Fragment {
         TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
         Fabric.with(getActivity(), new Twitter(authConfig));
 
-        Intent intent = new Intent(getActivity(), ShareTwitterActivity.class);
+        Intent intent = new Intent(getActivity(), ShareActivity.class);
         getActivity().startActivity(intent);
 
         return view;
