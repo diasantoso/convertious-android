@@ -25,7 +25,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".NavigationActivity" />
-        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".ShareTwitterActivity"></activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="2f160620708ff1ba8a44940d7808bec5d334c9b6" />
     </application>
 
 </manifest>

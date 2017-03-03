@@ -1,9 +1,11 @@
 package dias_plbtw.com.asikinaja;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
@@ -11,26 +13,93 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
+import com.twitter.sdk.android.tweetcomposer.TweetComposer;
 
 import dias_plbtw.com.asikinaja.Fragments.AboutFragment;
 import dias_plbtw.com.asikinaja.Fragments.BrowseFragment;
 import dias_plbtw.com.asikinaja.Fragments.ConnectFragment;
 import dias_plbtw.com.asikinaja.TwitterAPI.InitAPITwitter;
+import retrofit.Response;
 
-public class NavigationActivity extends AppCompatActivity {
+public class ShareTwitterActivity extends AppCompatActivity {
 
+    private TwitterLoginButton twitterButton;
+
+    //navigation drawer
     private Drawer result = null;
     private Bundle savedInstanceState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nav);
+        setContentView(R.layout.activity_share_twitter);
 
         setNavigationBar();
 
-        android.app.FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.framelay, new BrowseFragment()).commit();
+        setUpViews();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        twitterButton.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void setUpViews() {
+        setUpTwitterButton();
+    }
+
+    private void setUpTwitterButton() {
+        twitterButton = (TwitterLoginButton) findViewById(R.id.twitter_button);
+        twitterButton.setCallback(new Callback<TwitterSession>() {
+            @Override
+            public void onResponse(Response<TwitterSession> response) {
+
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+
+            @Override
+            public void success(Result<TwitterSession> result) {
+                Toast.makeText(getApplicationContext(),
+                        getResources().getString(R.string.app_name),
+                        Toast.LENGTH_SHORT).show();
+
+                setUpViewsForTweetComposer();
+            }
+
+            @Override
+            public void failure(TwitterException exception) {
+                Toast.makeText(getApplicationContext(),
+                        getResources().getString(R.string.app_name),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void setUpViewsForTweetComposer() {
+        String a = "";
+        TweetComposer.Builder builder = new TweetComposer.Builder(this)
+                .text("I use this App, You can downlaod it in Play Store ( https://play.google.com/store/apps )");
+        builder.show();
     }
 
     public void setNavigationBar()
