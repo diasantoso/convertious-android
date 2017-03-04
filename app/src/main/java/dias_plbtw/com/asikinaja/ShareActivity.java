@@ -49,6 +49,8 @@ public class ShareActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.Back:
                 finish();
+                Intent myIntent = new Intent(this, NavigationActivity.class);
+                startActivity(myIntent);
                 break;
         }
         return true;

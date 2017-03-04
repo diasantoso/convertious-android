@@ -1,5 +1,6 @@
 package dias_plbtw.com.asikinaja;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,9 +13,11 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import dias_plbtw.com.asikinaja.Fragments.AboutFragment;
 import dias_plbtw.com.asikinaja.Fragments.BrowseFragment;
 import dias_plbtw.com.asikinaja.Fragments.ConnectFragment;
+import dias_plbtw.com.asikinaja.Fragments.ResultFragment;
 import dias_plbtw.com.asikinaja.TwitterAPI.InitAPITwitter;
 
 public class NavigationActivity extends AppCompatActivity {
@@ -48,11 +51,11 @@ public class NavigationActivity extends AppCompatActivity {
                         new PrimaryDrawerItem().withName("").withIdentifier(1),
                         new PrimaryDrawerItem().withName("").withIdentifier(2),
                         new SectionDrawerItem().withName("Options"),
-                        new PrimaryDrawerItem().withName("Browse").withIcon(FontAwesome.Icon.faw_cog).withIdentifier(3),
-                        new PrimaryDrawerItem().withName("Connect Us").withIcon(FontAwesome.Icon.faw_cog).withIdentifier(4),
-                        new PrimaryDrawerItem().withName("About").withIcon(FontAwesome.Icon.faw_cog).withIdentifier(5),
-                        new PrimaryDrawerItem().withName("Share Twitter").withIcon(FontAwesome.Icon.faw_cog).withIdentifier(6),
-                        new PrimaryDrawerItem().withName("Exit").withIcon(FontAwesome.Icon.faw_cog).withIdentifier(7)
+                        new PrimaryDrawerItem().withName("Browse").withIcon(FontAwesome.Icon.faw_globe).withIdentifier(3),
+                        new PrimaryDrawerItem().withName("Connect Us").withIcon(FontAwesome.Icon.faw_facebook).withIdentifier(4),
+                        new PrimaryDrawerItem().withName("About").withIcon(FontAwesome.Icon.faw_user).withIdentifier(5),
+                        new PrimaryDrawerItem().withName("Share Twitter").withIcon(FontAwesome.Icon.faw_twitter).withIdentifier(6),
+                        new PrimaryDrawerItem().withName("Exit").withIcon(FontAwesome.Icon.faw_close).withIdentifier(7)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
