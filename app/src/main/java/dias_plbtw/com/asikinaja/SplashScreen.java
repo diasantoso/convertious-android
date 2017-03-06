@@ -50,7 +50,14 @@ public class SplashScreen extends AwesomeSplash {
     public void animationsFinished() {
         //transit to another activity here
         //or do whatever you want
-        Intent myIntent = new Intent(this, NavigationActivity.class);
-        startActivity(myIntent);
+        Preference pref = new Preference(this);
+        if(pref.checkTutorial()) {
+            Intent myIntent = new Intent(this, TutorialScreen.class);
+            startActivity(myIntent);
+        }
+        else {
+            Intent myIntent = new Intent(this, NavigationActivity.class);
+            startActivity(myIntent);
+        }
     }
 }
