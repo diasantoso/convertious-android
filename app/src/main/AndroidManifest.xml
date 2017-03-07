@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dias_plbtw.com.asikinaja">
+    package="dias_plbtw.com.convertme">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,7 +15,7 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name=".SplashScreen"
+            android:name="com.convertme.SplashScreen"
             android:label="@string/app_name"
             android:noHistory="true">
             <intent-filter>
@@ -24,18 +24,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NavigationActivity" />
-        <activity android:name=".ShareTwitterActivity" />
+        <activity android:name="com.convertme.NavigationActivity" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="2f160620708ff1ba8a44940d7808bec5d334c9b6" />
 
         <activity
-            android:name=".ShareActivity"
+            android:name="com.convertme.ShareActivity"
             android:label="@string/title_activity_share"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".TutorialScreen"></activity>
+        <activity android:name="com.convertme.TutorialScreen"></activity>
     </application>
 
 </manifest>

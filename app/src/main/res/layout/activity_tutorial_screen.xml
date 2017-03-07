@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="dias_plbtw.com.asikinaja.TutorialScreen">
+    tools:context="dias_plbtw.com.convertme.TutorialScreen">
 
     <com.daimajia.slider.library.SliderLayout
         android:id="@+id/slider"
