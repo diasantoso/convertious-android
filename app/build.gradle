@@ -15,7 +15,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.dias.converty"
+        applicationId "com.dias.convertious"
         minSdkVersion 17
         targetSdkVersion 23
         versionCode 1
