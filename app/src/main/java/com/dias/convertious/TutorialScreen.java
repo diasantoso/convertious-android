@@ -33,15 +33,14 @@ public class TutorialScreen extends AppCompatActivity implements BaseSliderView.
         skipBtn.setOnClickListener(this);
 
         HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
-        file_maps.put("Converty Tutorial 1",R.drawable.tutor_3);
-        file_maps.put("Converty Tutorial 2",R.drawable.tutor_2);
-        file_maps.put("Converty Tutorial 3",R.drawable.tutor_1);
+        file_maps.put("Convertious Tutorial 1",R.drawable.tutor_2);
+        file_maps.put("Convertious Tutorial 2",R.drawable.tutor_1);
 
         for(String name : file_maps.keySet()){
             TextSliderView textSliderView = new TextSliderView(this);
             // initialize a SliderLayout
             textSliderView
-                    .description("Converty Tutorial")
+                    .description("Convertious Tutorial")
                     .image(file_maps.get(name))
                     .setScaleType(BaseSliderView.ScaleType.Fit)
                     .setOnSliderClickListener(this);
@@ -49,7 +48,7 @@ public class TutorialScreen extends AppCompatActivity implements BaseSliderView.
             //add your extra information
             textSliderView.bundle(new Bundle());
             textSliderView.getBundle()
-                    .putString("extra","Converty Tutorial");
+                    .putString("extra","Convertious Tutorial");
 
             mDemoSlider.addSlider(textSliderView);
         }

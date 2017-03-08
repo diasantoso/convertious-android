@@ -27,7 +27,7 @@ public class ShareActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Converty");
+        toolbar.setTitle("Convertious");
         setSupportActionBar(toolbar);
 
         setUpViews();

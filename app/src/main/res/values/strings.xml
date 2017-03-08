@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Converty</string>
+    <string name="app_name">Convertious</string>
     <string name="title_activity_basic">BasicActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
