@@ -15,7 +15,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.convertme"
+        applicationId "com.dias.converty"
         minSdkVersion 17
         targetSdkVersion 23
         versionCode 1
@@ -38,7 +38,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
-
 
     //splash screen
     compile 'com.github.ViksaaSkool:AwesomeSplash:v1.0.0'
