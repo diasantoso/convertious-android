@@ -64,10 +64,10 @@ public class ConnectFragment extends Fragment implements View.OnClickListener {
         {
             shareDialog = new ShareDialog(this);
             ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                    .setContentTitle("Youtubious")
+                    .setContentTitle("Convertious")
                     .setContentDescription(
-                            "Youtubious containt video youtube converter and downloader.")
-                    .setContentUrl(Uri.parse("https://play.google.com/store/apps"))
+                            "Convertious containt video youtube converter and downloader.")
+                    .setContentUrl(Uri.parse("https://play.google.com/store/apps/details?id=com.dias.convertious"))
                     .build();
 
             shareDialog.show(linkContent);

@@ -109,7 +109,7 @@ public class ShareActivity extends AppCompatActivity {
     private void setUpViewsForTweetComposer() {
         String a = "";
         TweetComposer.Builder builder = new TweetComposer.Builder(this)
-                .text("I use this App, You can downlaod it in Play Store ( https://play.google.com/store/apps )");
+                .text("I use this App, You can downlaod it in Play Store ( https://play.google.com/store/apps/details?id=com.dias.convertious )");
         builder.show();
     }
 }
